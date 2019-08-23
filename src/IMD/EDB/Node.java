@@ -4,6 +4,15 @@ import java.util.ArrayList;
 
 public class Node {
     private String name;
+
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
+
     private ArrayList<Node> children;
     private Node parent = null;
 
@@ -38,6 +47,17 @@ public class Node {
     }
 
     public boolean isSibling(Node other) {
+        if(other == null || other == this) {
+            return false;
+        }
+        return parent == other.parent;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
