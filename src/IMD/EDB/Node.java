@@ -4,15 +4,6 @@ import java.util.ArrayList;
 
 public class Node {
     private String name;
-
-    public ArrayList<Node> getChildren() {
-        return children;
-    }
-
-    public Node getParent() {
-        return parent;
-    }
-
     private ArrayList<Node> children;
     private Node parent = null;
 
@@ -21,6 +12,13 @@ public class Node {
         children = new ArrayList<>();
     }
 
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
 
     public Node addChild(String s) {
         Node node = new Node(s);
