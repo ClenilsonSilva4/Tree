@@ -9,5 +9,6 @@ public class Main {
 	    root.addChild(new Node("Filho 2"));
 
 	    child1.addChild("Neto 1");
+	    child1.getTreeDegree();
     }
 }

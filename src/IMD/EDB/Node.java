@@ -6,6 +6,7 @@ public class Node {
     private String name;
     private ArrayList<Node> children;
     private Node parent = null;
+    private static int treeDegree;
 
     public Node(String name) {
         this.name = name;
@@ -26,6 +27,7 @@ public class Node {
     }
 
     public Node addChild(Node node) {
+        treeDegree = 0;
         children.add(node);
         node.parent = this;
         return node;
@@ -39,9 +41,24 @@ public class Node {
         return children.size();
     }
 
-    public int treeDegree() {
-        //TODO Calcular o grau da árvore
-        return 0;
+    public int getTreeDegree() {
+        if(treeDegree == 0) {
+            calculateTreeDegree();
+        }
+        return treeDegree;
+    }
+
+    private void calculateTreeDegree() {
+        if(parent != null && treeDegree == 0){
+            parent.calculateTreeDegree();
+        } else {
+            if(treeDegree < children.size()) {
+                treeDegree = children.size();
+            }
+            for(Node child: children) {
+                child.calculateTreeDegree();
+            }
+        }
     }
 
     public boolean isSibling(Node other) {

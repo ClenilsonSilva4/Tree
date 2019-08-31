@@ -9,7 +9,7 @@ public class NodeTest {
     private Node root, child1, child2, child3, grnChild1, grnChild2;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         root = new Node("Raiz");
         child1 = root.addChild(new Node("Child 1"));
         child2 = root.addChild(new Node("Child 2"));
@@ -29,7 +29,6 @@ public class NodeTest {
         boChild3 = child3.isLeaf();
         boGrnChild1 = grnChild1.isLeaf();
         boGrnChild2 = grnChild2.isLeaf();
-
 
         //Assert
         assertFalse(boChild1);
@@ -62,10 +61,38 @@ public class NodeTest {
     }
 
     @org.junit.Test
-    public void treeDegree() {
+    public void checkTreeDegree() {
+        //Arrange
+        int child1TreeDegree, rootTreeDegree, grnChild1TreeDegree;
+
+        //Act
+        child1TreeDegree = child1.getTreeDegree();
+        rootTreeDegree = root.getTreeDegree();
+        grnChild1TreeDegree = grnChild1.getTreeDegree();
+
+        //Assert
+        assertEquals(3, child1TreeDegree);
+        assertEquals(3, rootTreeDegree);
+        assertEquals(3, grnChild1TreeDegree);
     }
 
     @org.junit.Test
     public void ifIsSibling() {
+        //Arrange;
+        boolean boChild1, boChild2, boChild3, boGrnChild1, boGrnChild2;
+
+        //Act
+        boChild1 = child1.isSibling(child2);
+        boChild2 = child2.isSibling(child3);
+        boChild3 = child3.isSibling(child3);
+        boGrnChild1 = grnChild1.isSibling(root);
+        boGrnChild2 = grnChild2.isSibling(child2);
+
+        //Assert
+        assertTrue(boChild1);
+        assertTrue(boChild2);
+        assertFalse(boChild3);
+        assertFalse(boGrnChild1);
+        assertFalse(boGrnChild2);
     }
 }
