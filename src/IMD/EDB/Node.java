@@ -42,23 +42,17 @@ public class Node {
     }
 
     public int getTreeDegree() {
-        if(treeDegree == 0) {
-            calculateTreeDegree();
-        }
-        return treeDegree;
-    }
-
-    private void calculateTreeDegree() {
         if(parent != null && treeDegree == 0){
-            parent.calculateTreeDegree();
+            parent.getTreeDegree();
         } else {
             if(treeDegree < children.size()) {
                 treeDegree = children.size();
             }
             for(Node child: children) {
-                child.calculateTreeDegree();
+                child.getTreeDegree();
             }
         }
+        return treeDegree;
     }
 
     public boolean isSibling(Node other) {
